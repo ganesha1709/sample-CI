@@ -2,23 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
+        stage('init repo') {
             steps {
-                git url: 'https://github.com/ganesha1709/sample-CI.git', branch: 'main'
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                // Install any dependencies listed in requirements.txt
-                bat 'C:\\path\\to\\python.exe -m pip install -r requirements.txt'
+               git url:'https://github.com/ganesha1709/sample-CI.git',branch:'main'
+        
             }
         }
 
         stage('Run Python Script') {
             steps {
-                // Run the Python script
-                bat 'C:\\path\\to\\python.exe average_calculator.py'
+                // Run the Python script with the correct path
+                bat 'C:\\Users\\rsrin\\AppData\\Local\\Programs\\Python\\Launcher\\py.exe  average_calculator.py'
             }
         }
     }
