@@ -1,22 +1,24 @@
 pipeline {
     agent any
+
     stages {
-        stage('Build') {
+        stage('Clone Repository') {
             steps {
-                echo 'Building...'
-                // Replace this with actual build commands
+                git url: 'https://github.com/ganesha1709/sample-CI.git', branch: 'main'
             }
         }
-        stage('Test') {
+
+        stage('Install Dependencies') {
             steps {
-                echo 'Testing...'
-                // Replace this with actual test commands
+                // Install any dependencies listed in requirements.txt
+                bat 'C:\\Users\\rsrin\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe -m pip install -r requirements.txt'
             }
         }
-        stage('Deploy') {
+
+        stage('Run Python Script') {
             steps {
-                echo 'Deploying...'
-                // Replace this with actual deployment commands
+                // Run the Python script
+                bat 'C:\\Users\\rsrin\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe average_calculator.py'
             }
         }
     }
